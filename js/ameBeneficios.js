@@ -79,7 +79,9 @@ function avisoRegistro(nombreApellido, dni, email){
   });
 }
 function enviarFormularioContacto(){
-    $('#formularioContacto').submit(function() {
+    $('#formularioContacto').submit(function(e) {
+      e.preventDefault();
+      e.stopPropagation();
         $.ajax({
             type: 'POST',
             url: "datos/enviarMail.php",
@@ -87,7 +89,7 @@ function enviarFormularioContacto(){
             success:function(data){
                     if(data.success === true ){
                         alert(data.message);
-                        //$('#formularioContacto')[0].reset();
+                        $('#formularioContacto')[0].reset();
                     }
                     if(data.success === false ){
                         alert(data.message);

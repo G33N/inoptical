@@ -28,6 +28,14 @@ $headers = 'From: '.$email_from."\r\n".
 'X-Mailer: PHP/' . phpversion();
 @mail($email_to, $email_subject, $email_message, $headers);
 
-echo "¡El formulario se ha enviado con éxito!";
+$jsondata = array();
+        $jsondata['success'] = true;
+        $jsondata['message'] = "¡El formulario se ha enviado con éxito!";
 }
+else {
+    $jsondata['success'] = false;
+    $jsondata['message'] = 'Error al enviar.';
+  }
+  header('Content-type: application/json; charset=utf-8');
+  echo json_encode($jsondata);
 ?>
