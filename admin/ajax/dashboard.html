@@ -1,0 +1,83 @@
+<!--Start Breadcrumb-->
+<div class="row">
+<div class="col-xs-12">
+	<div class="box">
+		<div class="box-header">
+			<div class="box-name">
+				<i class="fa fa-linux"></i>
+				<span>Productos Activos</span>
+			</div>
+			<div class="box-icons">
+				<a class="collapse-link">
+					<i class="fa fa-chevron-up"></i>
+				</a>
+				<a class="expand-link">
+					<i class="fa fa-expand"></i>
+				</a>
+				<a class="close-link">
+					<i class="fa fa-times"></i>
+				</a>
+			</div>
+			<div class="no-move"></div>
+		</div>
+		<div class="box-content no-padding">
+			<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
+				<thead>
+					<tr>
+						<th>DNI</th>
+						<th>Nombre</th>
+						<th>Telefono</th>
+						<th>Celular</th>
+						<th>Email</th>
+						<th>Localidad</th>
+						<th>Domicilio</th>
+						<th>Ocupacion</th>
+						<th>Fecha</th>
+						<th>Modifcar</th>
+						<th>Eliminar</th>
+					</tr>
+				</thead>
+				<tbody id="listarRegistrados">
+				</tbody>
+				<tfoot>
+					<tr>
+						<th>DNI</th>
+						<th>Nombre</th>
+						<th>Telefono</th>
+						<th>Celular</th>
+						<th>Email</th>
+						<th>Localidad</th>
+						<th>Domicilio</th>
+						<th>Ocupacion</th>
+						<th>Fecha</th>
+						<th>Modifcar</th>
+						<th>Eliminar</th>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+</div>
+<div id="modalProducto"></div>
+</div>
+<!--End Dashboard 2 -->
+<div style="height: 40px;"></div>
+<script src="js/ameBeneficios.js"></script>
+<script type="text/javascript">
+// Array for random data for Sparkline
+var sparkline_arr_1 = SparklineTestData();
+var sparkline_arr_2 = SparklineTestData();
+var sparkline_arr_3 = SparklineTestData();
+$(document).ready(function() {
+	// Make all JS-activity for dashboard
+	DashboardTabChecker();
+	// Load Knob plugin and run callback for draw Knob charts for dashboard(tab-servers)
+	LoadKnobScripts(DrawKnobDashboard);
+	// Load Sparkline plugin and run callback for draw Sparkline charts for dashboard(top of dashboard + plot in tables)
+	LoadSparkLineScript(DrawSparklineDashboard);
+	// Load Morris plugin and run callback for draw Morris charts for dashboard
+	LoadMorrisScripts(MorrisDashboard);
+	// Make beauty hover in table
+	$("#ticker-table").beautyHover();
+});
+</script>
