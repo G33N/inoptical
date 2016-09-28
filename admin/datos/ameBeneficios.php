@@ -5,14 +5,25 @@ $orden = $_POST['orden'];
 $fecha = date("Y-m-d");
 switch($orden){
   case 0:
-  $queryRegistrados=  mysqli_query($conexion,"SELECT * FROM registrados") or die(mysqli_error());
-  $Registrados = array();
-      while($row =mysqli_fetch_assoc($queryRegistrados))
-      {
-          $Registrados[] = $row;
-      }
-  $json = json_encode($Registrados);
-  echo $json;
+  $estado = $_POST['estado'];
+    if($estado == 1){
+      $queryRegistrados=  mysqli_query($conexion,"SELECT * FROM registrados WHERE activo=$estado") or die(mysqli_error());
+      $Registrados = array();
+          while($row =mysqli_fetch_assoc($queryRegistrados))
+          {
+              $Registrados[] = $row;
+          }
+    }
+    elseif($estado == 0){
+      $queryRegistrados=  mysqli_query($conexion,"SELECT * FROM registrados WHERE activo=$estado") or die(mysqli_error());
+      $Registrados = array();
+          while($row =mysqli_fetch_assoc($queryRegistrados))
+          {
+              $Registrados[] = $row;
+          }
+    }
+    $json = json_encode($Registrados);
+    echo $json;
   break;
   case 1:
     $nombreApellido = $_POST['nombreApellido'];
@@ -51,6 +62,23 @@ switch($orden){
           header('Content-type: application/json; charset=utf-8');
           echo json_encode($jsondata);
           exit();
+  break;
+  case 21:
+    $id = $_POST['id'];
+    if(!empty($id)){
+    $queryRegistrados=  mysqli_query($conexion,"UPDATE registrados SET activo=0 WHERE id=$id") or die(mysqli_error());
+    $jsondata = array();
+            $jsondata['success'] = true;
+            $jsondata['message'] = 'Se guardo correctamente';
+        }
+        else {
+            $jsondata['success'] = false;
+            $jsondata['message'] = 'Error al guardar.';
+        }
+        //Aunque el content-type no sea un problema en la mayoría de casos, es recomendable especificarlo
+        header('Content-type: application/json; charset=utf-8');
+        echo json_encode($jsondata);
+        exit();
   break;
   case 3:
     $id = $_POST['id'];
