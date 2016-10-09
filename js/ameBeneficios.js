@@ -3,13 +3,6 @@ $(document).ready(function(){
     beneficiosForm();
     enviarFormulario();
     enviarFormularioContacto();
-    $('#beneficiosForm').on('keyup keypress', function(e) {
-      var keyCode = e.keyCode || e.which;
-      if (keyCode === 13) {
-        e.preventDefault();
-        return false;
-      }
-    });
 });
 function hoy(){
   var today = new Date();
@@ -45,8 +38,8 @@ function enviarFormulario(){
                     }
                 }
         });
-        return false;
     });
+    return false;
 }
 function registroMail(nombreApellido, dni, email){
   $.ajax({
